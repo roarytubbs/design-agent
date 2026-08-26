@@ -1,66 +1,43 @@
 # Design Agent
 
-Agent skills for design workflows and synthetic usability testing.
+Open agent skills for design workflows.
 
-This repo starts with `synthetic-usability-testing`, a skill for running fast AI-assisted usability checks against URLs, prototypes, Figma files, screenshots, and other interface artifacts. The goal is to help designers and product teams find likely usability risks before investing in human research.
+`design-agent` is a home for reusable skills that help designers, researchers, and product teams use agents in practical design work. The focus is on workflows where agents can inspect artifacts, reason through user tasks, generate useful reports, and help teams decide what to improve or validate next.
 
-Synthetic testing is a preflight method. It can identify plausible issues, broken paths, confusing language, weak recovery states, and task-completion risks. It should not be treated as proof of real user behavior.
+The repo starts with synthetic usability testing, but the intent is broader: design critique, research planning, design-system checks, AI-assisted review workflows, and other repeatable tools for technical designers.
+
+## Principles
+
+- Make agent work useful to designers, not just impressive in isolation.
+- Treat synthetic outputs as directional signal, not proof of real user behavior.
+- Keep skills portable and public, without private company-specific assumptions.
+- Prefer concrete artifacts: reports, rubrics, templates, recommendations, and validation plans.
+- Preserve human judgment. Agents should help teams see risks earlier, not replace research or design decision-making.
 
 ## Skills
 
 ### `synthetic-usability-testing`
 
-Runs a structured synthetic usability test with four passes:
+Runs a structured synthetic usability test against URLs, prototypes, Figma files, screenshots, docs, CLI/API workflows, and other interface artifacts.
 
-1. Explorer pass: inspect the artifact, gather prior signal when available, and capture raw observations.
-2. Scenario pass: run task scenarios through usability, persona, heuristic, and cognitive-load lenses.
-3. Reporter pass: synthesize observations into a severity-rated findings report.
-4. Verifier pass: challenge the report, adjust severity where needed, and flag weak or unverified findings.
+The skill inspects the artifact, creates task scenarios, evaluates them through usability and persona lenses, writes a severity-rated report, and verifies its own findings before final output.
 
-The skill lives at:
+Canonical skill docs live in [SKILL.md](skills/synthetic-usability-testing/SKILL.md). The supporting rubrics and templates live in that skill's `references/` folder.
 
-```text
-skills/synthetic-usability-testing/SKILL.md
-```
+## Roadmap
 
-Supporting references live next to the skill:
+Potential future skills:
 
-- `references/persona-panel-template.md`
-- `references/heuristic-checklist.md`
-- `references/severity-rubric.md`
-- `references/report-template.md`
-- `references/human-validation-plan.md`
-
-## Example Requests
-
-```text
-Run a usability test on https://example.com/signup
-```
-
-```text
-Test this prototype against the checkout task list in tasks.md
-```
-
-```text
-Run synthetic usability testing on these screenshots and produce a severity-rated report
-```
-
-## Output
-
-The skill produces a markdown report with:
-
-- Test metadata
-- Executive summary
-- Task results
-- Severity-rated findings
-- Recommendations
-- Verification summary
-
-Reports are saved to `reports/usability-report-YYYY-MM-DD.md` in the directory where the skill is run, unless the user asks for a different location.
+- Design critique and heuristic review.
+- Research planning from synthetic findings.
+- Design-system drift and token checks.
+- Accessibility preflight for design artifacts.
+- AI-assisted content and UX copy review.
+- Publication workflows for essays, case studies, and open-source project writeups.
 
 ## Install
 
-Install the skill by copying the skill folder into a supported skills directory:
+Install any skill by copying its folder into a supported skills directory. For example:
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -73,6 +50,8 @@ Project-local installs work the same way:
 mkdir -p .codex/skills
 cp -R skills/synthetic-usability-testing .codex/skills/
 ```
+
+Each installable skill should remain self-contained under `skills/<skill-name>/`.
 
 ## Related Work
 
