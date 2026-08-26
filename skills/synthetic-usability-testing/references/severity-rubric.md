@@ -55,3 +55,14 @@ Rate confidence separately from severity:
 - Low: plausible risk based on heuristic review or weak evidence.
 
 Do not raise severity because confidence is high. Do not lower severity because confidence is low. Instead, keep severity tied to impact and mark confidence honestly.
+
+## Tiebreakers
+
+When choosing between two severity levels, ask:
+
+- Does this prevent task completion? If yes, use P0.
+- Would a user likely contact support or abandon the flow? If yes, use at least P1.
+- Does a workaround exist but require extra effort or confidence? If yes, use P2.
+- Is the issue mostly polish with no task impact? If yes, use P3.
+
+Security, privacy, data loss, irreversible actions, and financial commitment risks should be treated as high impact even when they appear in a small part of the flow.
